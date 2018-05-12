@@ -1,0 +1,23 @@
+node:
+  id: NODE_ID
+  cluster: NODE_CLUSTER
+dynamic_resources:
+  ads_config:
+    api_type: GRPC
+    cluster_names: [xds_cluster]
+  lds_config: {ads: {}}
+  cds_config: {ads: {}}
+static_resources:
+  clusters:
+  - name: xds_cluster
+    connect_timeout: 0.25s
+    type: STATIC
+    lb_policy: ROUND_ROBIN
+    http2_protocol_options: {}
+    hosts: [{ socket_address: { address: XDS_HOST, port_value: XDS_PORT }}]
+admin:
+  access_log_path: "/dev/null"
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 8001
