@@ -1,4 +1,5 @@
-FROM envoyproxy/envoy-alpine:v1.6.0 AS envoy
+# a614808b9aab7cfd94d66a307a8b65c6c7890097 == 1.7.1
+FROM envoyproxy/envoy-alpine:a614808b9aab7cfd94d66a307a8b65c6c7890097 AS envoy
 
 FROM postgres:9.6.8-alpine
 COPY --from=envoy /usr/local/bin/envoy /usr/local/bin/envoy
